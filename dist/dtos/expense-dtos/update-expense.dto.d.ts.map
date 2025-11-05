@@ -1,0 +1,1 @@
+{"version":3,"file":"update-expense.dto.d.ts","sourceRoot":"","sources":["../../../src/dtos/expense-dtos/update-expense.dto.ts"],"names":[],"mappings":"AAGA,MAAM,CAAC,OAAO,OAAO,gBAAgB;IAKjC,MAAM,CAAC,EAAE,MAAM,CAAA;IAIf,IAAI,CAAC,EAAE,MAAM,CAAA;IAIb,UAAU,CAAC,EAAE,MAAM,CAAA;IAKnB,WAAW,CAAC,EAAE,MAAM,CAAA;CAEvB"}

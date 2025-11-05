@@ -1,0 +1,84 @@
+/admin/categories/all:
+  get:
+    summary: Retrieve all categories (admin only)
+    description: Returns a list of all categories in the system. Requires admin privileges.
+    tags: 
+      - Admin
+    security:
+      - bearerAuth: []
+    responses:
+      200:
+        description: Successfully retrieved all categories
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                allOf:
+                - $ref: "#/components/schemas/SuccessResponse"
+                - type: object
+                  properties:
+                    message:
+                      example: "Categories retrieved successfully"
+                    data:
+                      $ref: "#/components/schemas/CategoryResponsePayload"
+
+
+
+/admin/expenses/all:
+  get:
+    summary: Retrieve all expenses (admin only)
+    description: Returns a list of all expenses in the system. Requires admin privileges.
+    tags:
+      - Admin
+    security:
+      - bearerAuth: []
+    responses:
+      200:
+        description: Successfully retrieved all expenses
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/SuccessResponse"
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/ExpenseResponsePayload"
+        
+      401:
+        description: Unauthorized
+      500:
+        description: Server error
+
+/admin/users/all:
+  get:
+    summary: Retrieve all users (Admin only)
+    description: Get a list of all registered users.
+    tags:
+      - Admin
+    security:
+      - bearerAuth: []
+    responses:
+      200:
+        description: List of users retrieved successfully
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/SuccessResponse"
+                - type: object
+                  properties:
+                    data:
+                      allOf:
+                        - $ref: "#/components/schemas/SuccessResponse"
+                        - type: object
+                          properties:
+                            data:
+                              $ref: "#/components/schemas/UserResponsePayload"
+      401:
+        description: Unauthorized
+      500:
+        description: Server error

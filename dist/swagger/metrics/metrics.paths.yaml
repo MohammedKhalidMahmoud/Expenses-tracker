@@ -1,0 +1,15 @@
+
+/metrics:
+  get:
+    summary: expose metrics for prometheus.
+    description: expose metrics for prometheus to be consumed by Grafana for visualization.
+    tags:
+      - Metrics
+    security:
+      - bearerAuth: []
+    responses:
+      200:
+        description: Successfully retrieved metrics.
+                        
+      500:
+        description: Server error

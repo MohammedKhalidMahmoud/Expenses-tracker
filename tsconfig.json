@@ -1,0 +1,55 @@
+{
+  "compilerOptions": {
+    /* === File Paths === */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+
+    /* === Module + Target === */
+    "target": "ES2022",                       // ✅ Slightly newer, aligns with Node 20+
+    "module": "NodeNext",                     // ✅ Correct for ESM
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2022"],
+    "types": ["node"],
+
+    /* === Decorators === */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    /* === Output Options === */
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    /* === Strictness === */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "strictPropertyInitialization": false,
+
+    /* === Module Behavior === */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,             // ✅ Use true for modern import/export consistency
+    "moduleDetection": "force",
+
+    /* === Performance / Safety === */
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* === Path Aliases === */
+    "baseUrl": "./src",
+    "paths": {
+      "@models/*": ["models/*"],
+      "@repositories/*": ["repositories/*"],
+      "@services/*": ["services/*"],
+      "@controllers/*": ["controllers/*"],
+      "@routers/*": ["routers/*"],
+      "@utils/*": ["utils/*"]
+    }
+  },
+  "include": ["src/**/*", "src/types/**/*.d.ts"],
+  "exclude": ["node_modules", "dist"]
+}

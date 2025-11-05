@@ -1,0 +1,23 @@
+/create-checkout-session:
+  post:
+    tags:
+      - Subscription
+    summary: Create a new Stripe Checkout Session
+    description: |
+      Creates a Stripe Checkout Session for starting a new subscription to the Expenses Tracker Pro plan.
+    responses:
+      "200":
+        description: Successfully created session URL
+      "500":
+        description: Failed to create session
+
+/webhook:
+  post:
+    tags:
+      - Subscription
+    summary: Handle Stripe webhook events
+    description: |
+      Receives and processes events from Stripe (e.g., completed checkout, payment failures, subscription cancellations).
+    responses:
+      "200":
+        description: Webhook event processed successfully

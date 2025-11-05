@@ -1,0 +1,69 @@
+/oauth/google:
+  get:
+    tags:
+      - OAuth
+    summary: "Initiate Google OAuth login"
+    description: |
+      Redirects the user to Google’s OAuth 2.0 consent screen to authorize the application.
+      This endpoint initiates the OAuth flow and does **not** require authentication.
+
+      The user will be redirected to Google for login and consent.  
+      After successful authorization, Google redirects back to `/oauth/google/callback`.
+
+    responses:
+      "302":
+        description: Redirects to Google's OAuth 2.0 authorization page
+        headers:
+          Location:
+            schema:
+              type: string
+            example: "https://accounts.google.com/o/oauth2/v2/auth?client_id=..."
+      "500":
+        description: Server error during OAuth initiation
+
+/oauth/google/callback:
+  get:
+    tags:
+      - OAuth
+    summary: "Handle Google OAuth callback"
+    description: |
+      Handles the callback from Google after user authorization.  
+      Exchanges the authorization code for an access token and retrieves the user’s Google profile.  
+      On success, the backend typically creates or finds the user in the local database and returns
+      a session or JWT token for authentication.
+
+    responses:
+      "200":
+        description: Successfully authenticated with Google
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: "Google authentication successful"
+                user:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "a1b2c3d4e5"
+                    email:
+                      type: string
+                      example: "user@example.com"
+                    name:
+                      type: string
+                      example: "John Doe"
+      "401":
+        description: Authentication failed (invalid or expired token)
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: "Google authentication failed"
+      "500":
+        description: Server error during callback handling
